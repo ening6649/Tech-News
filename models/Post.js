@@ -56,6 +56,7 @@ Post.init(
         isURL: true
       }
     },
+    // identifies a post by user and id
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -65,6 +66,8 @@ Post.init(
     }
   },
   {
+    // this is the second parameter of this init method
+    // configures metadata, including naming conventions
     sequelize,
     freezeTableName: true,
     underscored: true,

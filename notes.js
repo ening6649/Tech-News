@@ -2,6 +2,8 @@
 // always run npm init or npm init -y first 
 // "start": "node server.js" in package.json
 // npm install express sequelize mysql2     to instill multiple packages at once
+// hooks in the model. Also known as lifecycle events
+// hooks are functions that are called before or after calls in Sequelize.
 
 // first step in using sequelize 
 const { Model, DataTypes } = require('sequelize');
@@ -229,3 +231,11 @@ User.findAll({
       console.log(err);
       res.status(500).json(err);
     });
+
+// create our User model
+class User extends Model {
+    // set up method to run on instance data (per user) to check password
+    checkPassword(loginPw) {
+      return bcrypt.compareSync(loginPw, this.password);
+    }
+  }

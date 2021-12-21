@@ -13,7 +13,9 @@ router.get('/', (req, res) => {
       'created_at',
       [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
+    // show the newest post first by descending time order
     order: [['created_at', 'DESC']],
+    // join to user table
     include: [
       {
         model: Comment,

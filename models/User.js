@@ -42,11 +42,13 @@ User.init(
   {
     hooks: {
       // set up beforeCreate lifecycle "hook" functionality
+      // before a new instance of user is created
       async beforeCreate(newUserData) {
+        // 10 is the number of saltrounds
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-
+      // when a user changes his password
       async beforeUpdate(updatedUserData) {
         updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
         return updatedUserData;
