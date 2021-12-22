@@ -48,6 +48,8 @@ router.get('/:id', (req, res) => {
       'post_url',
       'title',
       'created_at',
+      // .findAndCountAll() does not work here because we are counting
+      // an associated table's data and not the post itself
       [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
@@ -92,6 +94,8 @@ router.post('/', (req, res) => {
     });
 });
 
+// must be before put /:id otherwise
+// express.js will think the word upvote is a valid parameter for /:id
 router.put('/upvote', (req, res) => {
   // custom static method created in models/Post.js
   Post.upvote(req.body, { Vote, Comment, User })

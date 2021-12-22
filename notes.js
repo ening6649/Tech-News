@@ -4,6 +4,8 @@
 // npm install express sequelize mysql2     to instill multiple packages at once
 // hooks in the model. Also known as lifecycle events
 // hooks are functions that are called before or after calls in Sequelize.
+// because we've updated the relationships between the tables, 
+// we need to use sequelize.sync({ force: true }) in server.js to drop the tables and recreate them!
 
 // first step in using sequelize 
 const { Model, DataTypes } = require('sequelize');
@@ -239,3 +241,7 @@ class User extends Model {
       return bcrypt.compareSync(loginPw, this.password);
     }
   }
+
+// a third table, for the sole purpose of connecting 
+// the data between two other tables with their primary keys
+// This is known as a through table
