@@ -6,6 +6,8 @@
 // hooks are functions that are called before or after calls in Sequelize.
 // because we've updated the relationships between the tables, 
 // we need to use sequelize.sync({ force: true }) in server.js to drop the tables and recreate them!
+// To see which name Heroku is using for your application, run the following code in your terminal:
+// git remote -v
 
 // first step in using sequelize 
 const { Model, DataTypes } = require('sequelize');

@@ -16,6 +16,7 @@ Post.belongsTo(User, {
 });
 
 // many to many 
+// this is only if we need to access post through votes
 User.belongsToMany(Post, {
   through: Vote,
   as: 'voted_posts',

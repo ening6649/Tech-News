@@ -4,7 +4,7 @@ require('dotenv').config();
 
 let sequelize;
 
-
+// set up a remote database with jawsdb. 
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
